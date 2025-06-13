@@ -1,5 +1,6 @@
 package com.my.company.service;
 
+import lombok.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -12,8 +13,6 @@ public class OpenAIService {
   private final WebClient webClient;
 
 
-    @Value("${openai.api.key}")
-    private String apiKey;
 
     public OpenAIService() {
         this.webClient = WebClient.builder()
