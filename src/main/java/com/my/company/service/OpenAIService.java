@@ -13,24 +13,24 @@ public class OpenAIService {
 
     private final WebClient webClient;
 
-//    @Value("${openai.api.key}")
-//    private String apiKey;
-//
-//    public OpenAIService() {
-//        this.webClient = WebClient.builder()
-//                .baseUrl("https://api.openai.com/v1/chat/completions")
-//                .defaultHeader("Authorization", "Bearer " + System.getenv("OPENAI_API_KEY"))
-//                .defaultHeader("Content-Type", "application/json")
-//                .build();
-//    }
-    private final String apiKeys = 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;
+    @Value("${openai.api.key}")
+    private String apiKey;
 
     public OpenAIService() {
         this.webClient = WebClient.builder()
                 .baseUrl("https://api.openai.com/v1/chat/completions")
-                .defaultHeader("Authorization", "Bearer sk-"+ apiKeys)
+                .defaultHeader("Authorization", "Bearer " + System.getenv("OPENAI_API_KEY"))
                 .defaultHeader("Content-Type", "application/json")
                 .build();
+    }
+//    private final String apiKeys = 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;
+//
+//    public OpenAIService() {
+//        this.webClient = WebClient.builder()
+//                .baseUrl("https://api.openai.com/v1/chat/completions")
+//                .defaultHeader("Authorization", "Bearer sk-"+ apiKeys)
+//                .defaultHeader("Content-Type", "application/json")
+//                .build();
     }
 
     public String getDefinitionInMalagasy(String word) {
