@@ -11,15 +11,16 @@ public class OpenAIService {
 
   private final WebClient webClient;
 
-    // ⚠️ Clé API masquée pour sécurité : NE PAS commettre en clair dans GitHub
-  private final String apiKey = "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";
 
-  public OpenAIService() {
-    this.webClient = WebClient.builder()
-      .baseUrl("https://api.openai.com/v1/chat/completions")
-      .defaultHeader("Authorization", "Bearer " + apiKey)
-      .defaultHeader("Content-Type", "application/json")
-      .build();
+    @Value("${openai.api.key}")
+    private String apiKey;
+
+    public OpenAIService() {
+        this.webClient = WebClient.builder()
+                .baseUrl("https://api.openai.com/v1/chat/completions")
+                .defaultHeader("Authorization", "Bearer " + System.getenv("OPENAI_API_KEY"))
+                .defaultHeader("Content-Type", "application/json")
+                .build();
     }
 
   public String getDefinitionInMalagasy(String word) {String prompt = "Hazavao amin'ny teny malagasy ny dikan'ny teny hoe: " + word;
