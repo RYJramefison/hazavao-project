@@ -11,7 +11,7 @@ import java.util.Map;
 @Service
 public class OpenAIService {
 
-    private final WebClient webClient;
+  private final WebClient webClient;
 
 //    @Value("${openai.api.key}")
 //    private String apiKey;
@@ -23,20 +23,20 @@ public class OpenAIService {
 //                .defaultHeader("Content-Type", "application/json")
 //                .build();
 //    }
-    private final String apiKeys = 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;
+  private final String apiKeys = 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;
 
-    public OpenAIService() {
-        this.webClient = WebClient.builder()
-                .baseUrl("https://api.openai.com/v1/chat/completions")
-                .defaultHeader("Authorization", "Bearer sk-"+ apiKeys)
-                .defaultHeader("Content-Type", "application/json")
-                .build();
-    }
+  public OpenAIService() {
+    this.webClient = WebClient.builder()
+            .baseUrl("https://api.openai.com/v1/chat/completions")
+            .defaultHeader("Authorization", "Bearer sk-"+ apiKeys)
+            .defaultHeader("Content-Type", "application/json")
+            .build();
+  }
 
-    public String getDefinitionInMalagasy(String word) {
-        String prompt = "Hazavao amin'ny teny malagasy ny dikan'ny teny hoe: " + word;
+  public String getDefinitionInMalagasy(String word) {
+    String prompt = "Hazavao amin'ny teny malagasy ny dikan'ny teny hoe: " + word;
 
-        Map<String, Object> request = Map.of(
+    Map<String, Object> request = Map.of(
                 "model", "gpt-3.5-turbo",
                 "messages", new Object[]{
                         Map.of("role", "user", "content", prompt)
@@ -44,7 +44,7 @@ public class OpenAIService {
                 "temperature", 0.7
         );
 
-        return webClient.post()
+    return webClient.post()
                 .bodyValue(request)
                 .retrieve()
                 .bodyToMono(Map.class)

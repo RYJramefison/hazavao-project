@@ -9,12 +9,11 @@ import org.springframework.http.ResponseEntity;
 @AllArgsConstructor
 public class HazavaoController {
 
-    private final OpenAIService openAIService;
+  private final OpenAIService openAIService;
 
-
-    @GetMapping("/hazavao")
+  @GetMapping("/hazavao")
     public ResponseEntity<String> getDefinition(@RequestParam String teny) {
-        String definition = openAIService.getDefinitionInMalagasy(teny);
-        return ResponseEntity.ok(definition);
-    }
+      String definition = openAIService.getDefinitionInMalagasy(teny);
+      return ResponseEntity.ok(definition);
+  }
 }
